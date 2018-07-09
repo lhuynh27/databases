@@ -13,22 +13,21 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 CREATE TABLE users (
   id INTEGER NOT NULL AUTO_INCREMENT,
-  username VARCHAR(50) NULL DEFAULT NULL,
+  username VARCHAR(50) NOT NULL,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE rooms (
-  id INTEGER NOT NULL AUTO_INCREMENT,
-  roomname VARCHAR(25) NULL DEFAULT NULL,
-  PRIMARY KEY (id)
-);
+-- CREATE TABLE rooms (
+--   id INTEGER NOT NULL AUTO_INCREMENT,
+--   roomname VARCHAR(25) NOT NULL,
+--   PRIMARY KEY (id)
+-- );
 
 CREATE TABLE messages (
   id INTEGER NOT NULL AUTO_INCREMENT,
-  created_at timestamp default now(),
-  username_id INTEGER NULL DEFAULT NULL,
-  text VARCHAR(500) NULL DEFAULT NULL,
-  roomname_id INTEGER NULL DEFAULT NULL,
+  username_id INTEGER NOT NULL,
+  text VARCHAR(500) NOT NULL,
+  roomname_id INTEGER NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (username_id) REFERENCES users(id),
   FOREIGN KEY (roomname_id) REFERENCES rooms(id)
